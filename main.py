@@ -215,7 +215,6 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     message = " ".join(context.args)
 
-    # читаем пользователей
     with open(USERS_FILE, "r", encoding="utf-8") as f:
         users = f.read().splitlines()
 
