@@ -127,6 +127,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Привет! 💋\n"
         "Напиши количество тегов, которое хочешь получить."
     )
+
 #работа бота
 async def get_tags(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
@@ -215,7 +216,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = " ".join(context.args)
 
     # читаем пользователей
-    with with open(USERS_FILE, "r", encoding="utf-8") as f:
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
         users = f.read().splitlines()
 
     success = 0
