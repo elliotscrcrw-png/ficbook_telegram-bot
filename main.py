@@ -264,11 +264,11 @@ request = HTTPXRequest(
 telegram_app.add_handler(CommandHandler("start", start))
 telegram_app.add_handler(CommandHandler("broadcast", broadcast))
 telegram_app.add_handler(CommandHandler("tags", tags_message))
-MessageHandler(
-    filters.ChatType.PRIVATE
-    & filters.TEXT
-    & ~filters.COMMAND,
-    get_tags
+telegram_app.add_handler(
+    MessageHandler(
+        filters.TEXT & ~filters.COMMAND & filters.ChatType.PRIVATE,
+        get_tags
+    )
 )
 
 print("Бот запущен...")
