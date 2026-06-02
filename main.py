@@ -116,12 +116,16 @@ else:
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
 
+    print(f"USERS_FILE = {USERS_FILE}")
+
     with open(USERS_FILE, "a+", encoding="utf-8") as file:
         file.seek(0)
         users = file.read().splitlines()
 
         if str(chat_id) not in users:
             file.write(f"{chat_id}\n")
+            file.flush()
+            print(f"Добавлен пользователь {chat_id}")
 
     await update.message.reply_text(
         "Привет! 💋\n"
