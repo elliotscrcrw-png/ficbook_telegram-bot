@@ -171,6 +171,7 @@ async def get_tags(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def generate_tags(number):
     return sample(tags, number)
 
+#групповой чат
 async def tags_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
         await update.message.reply_text(
@@ -263,7 +264,12 @@ request = HTTPXRequest(
 telegram_app.add_handler(CommandHandler("start", start))
 telegram_app.add_handler(CommandHandler("broadcast", broadcast))
 telegram_app.add_handler(CommandHandler("tags", tags_message))
-telegram_app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, get_tags))
+MessageHandler(
+    filters.ChatType.PRIVATE
+    & filters.TEXT
+    & ~filters.COMMAND,
+    get_tags
+)
 
 print("Бот запущен...")
 
