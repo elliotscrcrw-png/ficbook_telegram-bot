@@ -6,7 +6,7 @@ from telegram.ext import (
     ContextTypes,
     filters,
 )
-from random import sample
+from random import sample, randint
 
 import os
 import threading
@@ -183,7 +183,7 @@ def generate_tags(number):
 #групповой чат
 async def tags_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
-        count = random.randint(3, 10)
+        count = randint(3, 10)
     else:
         try:
             count = int(context.args[0])
