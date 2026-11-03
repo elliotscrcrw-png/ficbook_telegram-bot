@@ -183,18 +183,15 @@ def generate_tags(number):
 #групповой чат
 async def tags_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
-        await update.message.reply_text(
-            "Напиши: /tags с любым числом 💅🏼"
-        )
-        return
-
-    try:
-        count = int(context.args[0])
-    except ValueError:
-        await update.message.reply_text(
-            "Количество должно быть числом 🧚‍♂️"
-        )
-        return
+        count = random.randint(3, 10)
+    else:
+        try:
+            count = int(context.args[0])
+        except ValueError:
+            await update.message.reply_text(
+                "Количество должно быть числом 🧚‍♂️"
+            )
+            return
 
     if count > len(tags):
         await update.message.reply_text(
